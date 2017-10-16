@@ -11,7 +11,7 @@ export class FilterPipe implements PipeTransform {
     if (term === undefined) {return posts; }
     //return updated posts array
     return posts.filter((post) => {
-      return post[key].toString().includes(term.toString());
+      return post[key].toString().toLowerCase().includes(term.toString().toLowerCase());
     });
   }
 
