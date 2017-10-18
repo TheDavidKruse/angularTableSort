@@ -12,7 +12,7 @@ import { FilterPipe } from './filter.pipe';
   declarations: [
     AppComponent,
     TableComponent,
-    FilterPipe
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
