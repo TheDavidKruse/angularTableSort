@@ -9,6 +9,19 @@ export class FilterPipe implements PipeTransform {
     console.log('term is', typeof(term), term, 'key is', filterKey, 'format is', format);
     //check if term is undefined
 
+    let halfSwap = (array) => {
+          let left = null;
+          let right = null;
+          let length = array.length;
+          for (left = 0; left < length / 2; left += 1) {
+              right = length - 1 - left;
+              var temp = array[left];
+              array[left] = array[right];
+              array[right] = temp;
+          }
+          return array;
+    };
+
     switch (format) {
       case 'asc':
       if (term === undefined && filterKey === undefined) {
@@ -40,9 +53,9 @@ export class FilterPipe implements PipeTransform {
 
       case 'desc':
       if (term === undefined && filterKey === undefined) {
-        return posts.reverse();
+        return halfSwap(posts);
       } else if (term === undefined) {
-        return posts.sort((a, b) => {
+         return halfSwap(posts.sort((a, b) => {
           if (a[filterKey] < b[filterKey]) {
              return -1;
             } else if (a[filterKey] > b[filterKey]) {
@@ -50,9 +63,10 @@ export class FilterPipe implements PipeTransform {
             }else {
               return 0;
             }
-        }).reverse();
+        })
+      );
       } else {
-      return posts.filter((post) => {
+      return halfSwap(posts.filter((post) => {
         return post[filterKey].toString().toLowerCase().includes(term.toLowerCase());
       }).sort((a, b) => {
           if (a[filterKey] < b[filterKey]) {
@@ -62,7 +76,8 @@ export class FilterPipe implements PipeTransform {
             }else {
               return 0;
             }
-      }).reverse();
+      })
+    );
     }
 
 

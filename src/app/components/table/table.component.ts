@@ -10,12 +10,7 @@ import { FilterPipe } from '../../filter.pipe';
 export class TableComponent implements OnInit {
   posts: any[];
   postKeys: any[];
-  filterKey: string;
   format = 'asc';
-
-  setFilterKey(key): void {
-    this.filterKey = key;
-  }
 
   constructor(private dataService: DataService) { }
 
