@@ -1,18 +1,16 @@
 
-  <select [(ngModel)]='key' >
-    <option *ngFor='let key of postKeys' value={{key}}>{{key}}</option>
+  <select [(ngModel)]='format' >
+    <option selected value='asc'>Ascending</option>
+    <option value='desc'>Descending</option>
     </select>
     <input type="text" [(ngModel)]="term" >
     <button type="submit">Submit</button>
 
-<input type="hidden" #keyFilter [(ngModel)] ='key'>
-
-
 <table style="width:100%">
   <tr>
-    <th *ngFor='let key of postKeys'(click)='filterKey = key'>{{key}}</th>
+    <th *ngFor='let key of postKeys' (click)='filterKey = key'>{{key}}</th>
   </tr>
-  <tr *ngFor='let post of posts | filter: term:filterKey'>
-    <td *ngFor='let key of postKeys'>{{post[key]}}</td>
+  <tr *ngFor='let post of posts | filter: term:filterKey:format'>
+    <td *ngFor='let key of postKeys' (click)='filterKey = key'>{{post[key]}}</td>
   </tr>
 </table>
