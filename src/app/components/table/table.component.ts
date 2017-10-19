@@ -11,6 +11,7 @@ export class TableComponent implements OnInit {
   posts: any[];
   postKeys: any[];
   filterKey: string;
+  format = 'asc';
 
   setFilterKey(key): void {
     this.filterKey = key;
